@@ -1,6 +1,6 @@
 import { createConnection, Connection, useContainer } from 'typeorm';
 import {Container} from "typedi";
-import User from '../entities/User';
+import Entities from '../entities';
 class Database {
   private connection: Connection;
   connect = async () => {
@@ -13,7 +13,7 @@ class Database {
         username: '',
         password: '',
         database: 'recordAppDb',
-        entities: [User],
+        entities: Entities,
         synchronize: true,
         logging: false,
         useUnifiedTopology: true
@@ -21,9 +21,7 @@ class Database {
       console.log('Connected successfully')
       return this
     } catch (e) {
-      console.log(e)
-      console.log('Connecting to db failed');
-      throw new Error(e)
+      throw new Error(`Connecting to db failed: ${e.message}`)
     }
   };
 
