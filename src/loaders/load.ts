@@ -2,8 +2,8 @@ import Database from './db-connection';
 import Server from './server'
 
 export const load = () => {
-    Database.connect().then(connection => {
-        Server.init(connection.getConnection)
+    Database.connect().then(() => {
+        Server.init()
     },
     error => {
         console.log(error)

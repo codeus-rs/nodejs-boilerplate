@@ -1,5 +1,4 @@
-import { Param, Get, JsonController } from 'routing-controllers';
-import User from './../entity/User';
+import { Get, JsonController } from 'routing-controllers';
 
 @JsonController('/user')
 export default class UserController {

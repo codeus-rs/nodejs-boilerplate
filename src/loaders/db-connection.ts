@@ -1,10 +1,11 @@
-import { createConnection, Connection } from 'typeorm';
-import User from '../entity/User';
-import Server from './server'
+import { createConnection, Connection, useContainer } from 'typeorm';
+import {Container} from "typedi";
+import User from '../entities/User';
 class Database {
   private connection: Connection;
   connect = async () => {
     try {
+      useContainer(Container)
       this.connection = await createConnection({
         type: 'mongodb',
         host: 'localhost',

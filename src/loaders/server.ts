@@ -1,14 +1,10 @@
-import { Connection } from 'typeorm';
 import { Application } from 'express';
 import { createExpressServer, Action } from 'routing-controllers';
 import bodyParser from 'body-parser';
-import Database from './db-connection';
 class Server {
   private app: Application;
-  private dbConnection: Connection;
 
-  public async init(connection: Connection) {
-    this.dbConnection = connection;
+  public init() {
     this.createServer();
     this.configureApp(this.app);
   }
