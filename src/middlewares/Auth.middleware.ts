@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { UserService } from "../services/User.service";
+import { UserService } from "../services";
 import { User } from "../entities";
 import { Container } from "typedi";
 const tokenType = "Bearer" // TODO add to env

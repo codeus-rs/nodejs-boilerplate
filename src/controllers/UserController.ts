@@ -1,6 +1,6 @@
 import { Get, JsonController } from 'routing-controllers';
 import { Container } from 'typedi';
-import { UserService } from '../services/User.service';
+import { UserService } from '../services';
 
 @JsonController('/user')
 export default class UserController {
