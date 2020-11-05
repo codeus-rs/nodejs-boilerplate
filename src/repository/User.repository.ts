@@ -1,6 +1,5 @@
 import { Service } from "typedi";
 import { Repository, EntityRepository } from "typeorm";
-import { InjectRepository } from "typeorm-typedi-extensions";
 import User from "../entities/User";
 
 @Service()
