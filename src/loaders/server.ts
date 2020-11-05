@@ -1,6 +1,8 @@
 import { Application } from 'express';
 import { createExpressServer, Action } from 'routing-controllers';
 import bodyParser from 'body-parser';
+import path from 'path';
+import Auth from './../middlewares/Auth.middleware'
 class Server {
   private app: Application;
 
@@ -19,16 +21,13 @@ class Server {
   }
   private createServer(){
     this.app = createExpressServer({
-      controllers: [__dirname + "/controllers/*.ts"],
+      controllers: [path.join(__dirname + "/../" + "controllers/*.ts")],
       cors: true,
       authorizationChecker: async (action: Action) => {
-        return true;
-        // implement authorization check here; more info can be found in routing-controllers node package description
+        return Auth.authenticate(action.request.headers["authorization"]);
       },
       currentUserChecker: async (action: Action) => {
-        return true;
-        // implement getting user by his access token here; more info can be found in routing-controllers node package description
-        // also this middleware should return user entity
+        return Auth.currentUser(action.request.headers["authorization"].split(" ")[1])
       }
     });
   }

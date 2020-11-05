@@ -11,8 +11,8 @@ export class UserService {
         private readonly userRepository: UserRepository,
     ) {}
 
-    public userExist(user: User): boolean {
-        return true
+    public getById(id: string): User | null {
+        return null
     }
 
 }

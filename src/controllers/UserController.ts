@@ -1,9 +1,16 @@
 import { Get, JsonController } from 'routing-controllers';
+import { Container } from 'typedi';
+import { UserService } from '../services/User.service';
 
 @JsonController('/user')
 export default class UserController {
+  private userService: UserService
+  constructor(){
+    this.userService = Container.get(UserService)
+  }
+ 
   @Get()
   public test() {
-    console.log('test');
+    return this.userService.getById("12t")
   }
 }
