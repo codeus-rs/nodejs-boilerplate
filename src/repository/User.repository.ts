@@ -5,9 +5,7 @@ import { User } from "../entities";
 @Service()
 @EntityRepository(User)
 export default class UserRepository extends Repository<User> {
-    
     public findByEmail(email: string) {
         return this.findOne({ email });
     }
-    
 }

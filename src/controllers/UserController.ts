@@ -1,16 +1,16 @@
-import { Get, JsonController } from 'routing-controllers';
-import { Container } from 'typedi';
-import { UserService } from '../services';
+import { Get, JsonController } from "routing-controllers";
+import { Container } from "typedi";
+import { UserService } from "../services";
 
-@JsonController('/user')
+@JsonController("/user")
 export default class UserController {
-  private userService: UserService
-  constructor(){
-    this.userService = Container.get(UserService)
-  }
- 
-  @Get()
-  public test() {
-    return this.userService.getById("12t")
-  }
+    private userService: UserService;
+    constructor() {
+        this.userService = Container.get(UserService);
+    }
+
+    @Get()
+    public test() {
+        return this.userService.getById("12t12t12t12t");
+    }
 }
