@@ -3,6 +3,7 @@ import { createExpressServer, Action } from 'routing-controllers';
 import bodyParser from 'body-parser';
 import path from 'path';
 import Auth from './../middlewares/Auth.middleware'
+import environment from './../config/environment'
 class Server {
   private app: Application;
 
@@ -12,11 +13,11 @@ class Server {
   }
 
   private configureApp(app: Application): void {
-    app.set('port', 8123);
+    app.set('port', environment.PORT);
     app.use(bodyParser.json({ limit: '20mb' }));
     app.use(bodyParser.urlencoded({ limit: '20mb', extended: true }));
     app.listen(8123, () => {
-      console.log(`App is running at http://localhost:8123`)
+      console.log(`App is running at http://localhost:${environment.PORT}`)
     })
   }
   private createServer(){
