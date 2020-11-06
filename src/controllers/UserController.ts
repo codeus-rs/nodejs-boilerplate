@@ -5,12 +5,12 @@ import { UserService } from "../services";
 @JsonController("/user")
 export default class UserController {
     private userService: UserService;
-    constructor() {
+    constructor () {
         this.userService = Container.get(UserService);
     }
 
     @Get()
-    public test() {
+    public test () {
         return this.userService.getById("12t12t12t12t");
     }
 }

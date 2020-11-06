@@ -1,5 +1,5 @@
 module.exports = function (api) {
-    const {NODE_ENV} = process.env;
+    const { NODE_ENV } = process.env;
     api.cache(() => NODE_ENV);
     api.env();
 

@@ -8,12 +8,12 @@ import environment from "./../config/environment";
 class Server {
     private app: Application;
 
-    public init() {
+    public init () {
         this.createServer();
         this.configureApp(this.app);
     }
 
-    private configureApp(app: Application): void {
+    private configureApp (app: Application): void {
         app.set("port", environment.PORT);
         app.use(bodyParser.json({ limit: "20mb" }));
         app.use(bodyParser.urlencoded({ limit: "20mb", extended: true }));
@@ -23,18 +23,14 @@ class Server {
             );
         });
     }
-    private createServer() {
+    private createServer () {
         this.app = createExpressServer({
             controllers: [path.join(__dirname + "/../" + "controllers/*.ts")],
             cors: true,
-            authorizationChecker: async (action: Action) => {
-                return Auth.authenticate(action.request.headers.authorization);
-            },
-            currentUserChecker: async (action: Action) => {
-                return Auth.currentUser(
-                    action.request.headers.authorization.split(" ")[1]
-                );
-            },
+            authorizationChecker: async (action: Action) => Auth.authenticate(action.request.headers.authorization),
+            currentUserChecker: async (action: Action) => Auth.currentUser(
+                action.request.headers.authorization.split(" ")[1]
+            ),
         });
     }
 }

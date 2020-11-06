@@ -27,7 +27,7 @@ class Database {
         }
     };
 
-    get getConnection() {
+    get getConnection () {
         return this.connection;
     }
 }

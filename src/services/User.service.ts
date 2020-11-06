@@ -5,12 +5,12 @@ import { InjectRepository } from "typeorm-typedi-extensions";
 
 @Service()
 export default class UserService {
-    constructor(
+    constructor (
         @InjectRepository()
         private readonly userRepository: UserRepository
     ) {}
 
-    public async getById(id: string): Promise<User | undefined> {
+    public async getById (id: string): Promise<User | undefined> {
         return this.userRepository.findOne(id);
     }
 }

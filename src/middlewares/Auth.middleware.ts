@@ -19,17 +19,13 @@ class Auth {
         }
     };
 
-    currentUser = async (token: string): Promise<User | undefined> => {
+    currentUser = (token: string): Promise<User | undefined> => {
         const { id } = JSON.parse(token);
         return this.userService.getById(id);
     };
 
-    checkTokenType = (token: string): boolean => {
-        return token.split(" ")[0] === environment.TOKEN_TYPE;
-    };
+    checkTokenType = (token: string): boolean => token.split(" ")[0] === environment.TOKEN_TYPE;
 
-    decodeToken = (token: string) => {
-        return jwt.verify(token, environment.JWT_SECRET_KEY);
-    };
+    decodeToken = (token: string) => jwt.verify(token, environment.JWT_SECRET_KEY);
 }
 export default new Auth();
